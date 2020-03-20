@@ -12,13 +12,21 @@ const NavBar = props => {
 
     return (
         <header>
-            <Jumbotron className="site-title">
+            {/* <Jumbotron className="site-title">
                 <h1>toneTrunk</h1>
-            </Jumbotron>
+            </Jumbotron> */}
             <Navbar bg="dark" variant="dark" >
                 <Nav className="container">
 
                     <NavLink className="nav-link" to="/Home">Home</NavLink>
+
+                    {props.hasUser
+                        ?
+                        <NavLink className="nav-link" to="/amps" >
+                            Amplifiers
+                            </NavLink>
+
+                        : null}
 
                     {props.hasUser
                         ?
