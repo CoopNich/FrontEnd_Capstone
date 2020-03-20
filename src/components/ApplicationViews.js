@@ -4,6 +4,7 @@ import Login from "./auth/Login";
 import Home from "./home/Home"
 import AmpList from "./amps/AmpList";
 import AmpForm from "./amps/AmpForm";
+import AmpEditForm from "./amps/AmpEditForm";
 
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
@@ -43,6 +44,14 @@ const ApplicationViews = props => {
                     }
                 }}
             />
+            <Route path="/amps/:ampId(\d+)/edit"
+                render={props => {
+                    if (hasUser) {
+                        return <AmpEditForm {...props} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
         </>
 
 

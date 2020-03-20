@@ -10,11 +10,11 @@ const AmpCard = props => {
         <h3 className="card-title">
           {props.amp.name}
         </h3>
-        {/* <Button className="btn" bg="dark" variant="dark" type="button"
+        <Button className="btn" bg="dark" variant="dark" type="button"
           onClick={() => props.history.push(`/amps/${props.amp.id}/edit`)}>
-          Edit
+          Rename
         </Button>
-        <Button className="btn" bg="dark" variant="dark" type="button" onClick={() => props.deleteAmp(props.amp.id)}>Delete</Button> */}
+        <Button className="btn" bg="dark" variant="dark" type="button" onClick={() => props.deleteAmp(props.amp.id)}>Delete</Button>
       </div>
     </Card>
     )

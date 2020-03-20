@@ -34,7 +34,6 @@ const AmpForm = props => {
                
                     <div className="formgrid">
                         <div>
-                        {/* <label htmlFor="title">Title</label> */}
                         <input
                             type="text"
                             required
