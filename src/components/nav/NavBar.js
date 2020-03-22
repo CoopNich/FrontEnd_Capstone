@@ -35,6 +35,13 @@ const NavBar = props => {
                             </NavLink>
 
                         : null}
+                    {props.hasUser
+                        ?
+                        <NavLink className="nav-link" to="/pedals" >
+                            Pedals
+                            </NavLink>
+
+                        : null}
 
                     {props.hasUser
                         ?
