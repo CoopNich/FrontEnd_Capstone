@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AmpCard from "./AmpCard";
 import AmpManager from "../../modules/AmpManager";
-import { Button } from "reactstrap"
+import { Button, Card, CardDeck } from "react-bootstrap"
 
 const AmpList = (props) => {
     const [amps, setAmps] = useState([]);

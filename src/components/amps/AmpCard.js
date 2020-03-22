@@ -1,15 +1,16 @@
 import React from "react"; 
 // import { Link } from "react-router-dom"
-import { Card, Button } from "reactstrap"
+import { Card, Button } from "react-bootstrap"
 
 const AmpCard = props => {
 
     return (
-        <Card className="card">
+        <Card style={{ width: '15rem' }}>
       <div className="card-content">
-        <h3 className="card-title">
+          <Card.Img variant="top" src={require('./amp_01.svg')} />
+        <Card.Title>
           {props.amp.name}
-        </h3>
+        </Card.Title>
         <Button className="btn" bg="dark" variant="dark" type="button"
           onClick={() => props.history.push(`/amps/${props.amp.id}/edit`)}>
           Rename
