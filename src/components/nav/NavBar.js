@@ -30,6 +30,14 @@ const NavBar = props => {
 
                     {props.hasUser
                         ?
+                        <NavLink className="nav-link" to="/guitars" >
+                            Guitars
+                            </NavLink>
+
+                        : null}
+
+                    {props.hasUser
+                        ?
                         <NavLink className="nav-link" to="/login" onClick={handleLogout} >
                             Logout
                              </NavLink>
