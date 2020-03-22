@@ -5,6 +5,9 @@ import Home from "./home/Home"
 import AmpList from "./amps/AmpList";
 import AmpForm from "./amps/AmpForm";
 import AmpEditForm from "./amps/AmpEditForm";
+import GuitarList from "./guitars/GuitarList";
+import GuitarForm from "./guitars/GuitarForm";
+import GuitarEditForm from "./guitars/GuitarEditForm";
 
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
@@ -51,7 +54,36 @@ const ApplicationViews = props => {
                     } else {
                         return <Redirect to="/login" />
                     }
-                }} />
+                }}
+            />
+            <Route exact path="/guitars"
+                render={props => {
+                    if (hasUser) {
+                        return <GuitarList {...props} />;
+                    } else {
+                        return <Redirect to="/login" />;
+                    }
+                }}
+            />
+                    <Route
+                path="/guitars/new"
+                render={props => {
+                    if (hasUser) {
+                        return <GuitarForm {...props} />;
+                    } else {
+                        return <Redirect to="/login" />;
+                    }
+                }}
+            />
+                      <Route path="/guitars/:guitarId(\d+)/edit"
+                render={props => {
+                    if (hasUser) {
+                        return <GuitarEditForm {...props} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }}
+            />
         </>
 
 
