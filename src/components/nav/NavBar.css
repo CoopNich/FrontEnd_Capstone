@@ -1,0 +1,6 @@
+.site-title.jumbotron {
+    display: flex;
+     justify-content: center;
+     padding: 16px;
+     margin: 0px;
+    }

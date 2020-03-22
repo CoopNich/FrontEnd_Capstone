@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { Navbar, Nav, Jumbotron } from "reactstrap"
-// import "./NavBar.css"
+import "./NavBar.css"
 
 const NavBar = props => {
 
@@ -12,13 +12,13 @@ const NavBar = props => {
 
     return (
         <header>
-            {/* <Jumbotron className="site-title">
+            <Jumbotron className="site-title">
                 <h1>toneTrunk</h1>
-            </Jumbotron> */}
+            </Jumbotron>
             <Navbar bg="dark" variant="dark" >
                 <Nav className="container">
 
-                    <NavLink className="nav-link" to="/Home">Home</NavLink>
+                    {/* <NavLink className="nav-link" to="/Home">Home</NavLink> */}
 
                     {props.hasUser
                         ?
@@ -35,10 +35,7 @@ const NavBar = props => {
                              </NavLink>
 
                         :
-                        <NavLink className="nav-link" to="/login" >
-                            Login
-                             </NavLink>
-                    }
+                        null}
                 </Nav>
             </Navbar>
         </header>
