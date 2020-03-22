@@ -10,6 +10,7 @@ import GuitarForm from "./guitars/GuitarForm";
 import GuitarEditForm from "./guitars/GuitarEditForm";
 import PedalList from "./pedals/PedalList";
 import PedalForm from "./pedals/PedalForm";
+import PedalEditForm from "./pedals/PedalEditForm"
 
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
@@ -102,6 +103,15 @@ const ApplicationViews = props => {
                         return <PedalForm {...props} />;
                     } else {
                         return <Redirect to="/login" />;
+                    }
+                }}
+            />
+            <Route path="/pedals/:pedalId(\d+)/edit"
+                render={props => {
+                    if (hasUser) {
+                        return <PedalEditForm {...props} />
+                    } else {
+                        return <Redirect to="/login" />
                     }
                 }}
             />
