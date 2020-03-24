@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ToneManager from '../../modules/ToneManager';
 import ToneGuitarCard from "./ToneGuitarCard"
 import ToneAmpCard from "./ToneAmpCard"
+import TonePedalList from "./TonePedalList"
 
 const ToneDetails = props => {
     const [guitar, setGuitar] = useState({ name: "" });
@@ -43,6 +44,11 @@ const ToneDetails = props => {
                     {...props}
                 />
             
+        </div>
+        <div className="pedal-list">
+            <TonePedalList 
+            {...props}
+            />
         </div>
         </>
     );

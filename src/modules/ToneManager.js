@@ -14,7 +14,7 @@ export default {
         return fetch(`${remoteURL}/tones/${id}?_expand=guitar`).then(result => result.json())
     },
     getWithPedals(id) {
-        return fetch(`${remoteURL}/tones/toneId=${id}&_expand=pedal`).then(result => result.json())
+        return fetch(`${remoteURL}/pedalTones?toneId=${id}&_expand=pedal`).then(result => result.json())
     }
 
 
