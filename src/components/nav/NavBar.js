@@ -22,6 +22,14 @@ const NavBar = props => {
 
                     {props.hasUser
                         ?
+                        <NavLink className="nav-link" to="/tones" >
+                            My Tones
+                            </NavLink>
+
+                        : null}
+                   
+                    {props.hasUser
+                        ?
                         <NavLink className="nav-link" to="/amps" >
                             Amplifiers
                             </NavLink>

@@ -11,6 +11,7 @@ import GuitarEditForm from "./guitars/GuitarEditForm";
 import PedalList from "./pedals/PedalList";
 import PedalForm from "./pedals/PedalForm";
 import PedalEditForm from "./pedals/PedalEditForm"
+import ToneList from "./tones/ToneList"
 
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
@@ -18,6 +19,15 @@ const ApplicationViews = props => {
 
     return (
         <>
+                 <Route exact path="/"
+                render={props => {
+                    if (hasUser) {
+                        return <Redirect to="/tones" />;
+                    } else {
+                        return <Redirect to="/login" />;
+                    }
+                }}
+            />
             <Route
                 path="/login"
                 render={props => {
@@ -29,6 +39,15 @@ const ApplicationViews = props => {
                 path="/Home"
                 render={props => {
                     return <Home hasUser={hasUser} {...props} />;
+                }}
+            />
+            <Route exact path="/tones"
+                render={props => {
+                    if (hasUser) {
+                        return <ToneList {...props} />;
+                    } else {
+                        return <Redirect to="/login" />;
+                    }
                 }}
             />
             <Route exact path="/amps"

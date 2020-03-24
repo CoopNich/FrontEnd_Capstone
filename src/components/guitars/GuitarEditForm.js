@@ -50,8 +50,7 @@ const GuitarEditForm
                 <div>
                     <Button className="btn" bg="dark" variant="dark" type="button"
                         type="button" disabled={isLoading}
-                        onClick={updateExistingGuitar
-                }
+                        onClick={updateExistingGuitar}
                         className="btn btn-primary">
                         Update
                 </Button>
