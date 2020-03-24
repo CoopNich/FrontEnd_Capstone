@@ -4,7 +4,7 @@ import { Card, Button } from "react-bootstrap"
 const ToneCard = props => {
 
     return (
-        <Card style={{ width: '20rem' }} onClick={() => props.history.push(`/tones/${props.tone.id}/details`)}>
+        <Card style={{ width: '15rem' }} onClick={() => props.history.push(`/tones/${props.tone.id}`)}>
       <div className="card-content">
           <Card.Img variant="top" src={require('./tone_01.svg')} />
         <Card.Title>
