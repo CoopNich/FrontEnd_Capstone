@@ -9,7 +9,6 @@ const TonePedalList = (props) => {
     const getPedals = () => {
         return ToneManager.getWithPedals(props.toneId).then(pedalsArray => {
             setPedals(pedalsArray)
-            console.log(pedalsArray)
         });
     };
 
