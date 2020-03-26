@@ -10,12 +10,25 @@ export default {
     getWithGuitarAndAmp(id) {
         return fetch(`${remoteURL}/tones/${id}?_expand=amp&_expand=guitar`).then(result => result.json())
     },
-    getWithGuitar(id) {
-        return fetch(`${remoteURL}/tones/${id}?_expand=guitar`).then(result => result.json())
-    },
+    // getWithGuitar(id) {
+    //     return fetch(`${remoteURL}/tones/${id}?_expand=guitar`).then(result => result.json())
+    // },
     getWithPedals(id) {
         return fetch(`${remoteURL}/pedalTones?toneId=${id}&_expand=pedal`).then(result => result.json())
-    }
-
+    },
+    post(newTone) {
+        return fetch(`${remoteURL}/tones`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newTone)
+        }).then(data => data.json())
+    },
+    delete(id) {
+        return fetch(`${remoteURL}/tones/${id}`, {
+          method: "DELETE"
+        }).then(result => result.json())
+      },
 
 }
