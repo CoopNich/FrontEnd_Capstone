@@ -13,6 +13,7 @@ import PedalForm from "./pedals/PedalForm";
 import PedalEditForm from "./pedals/PedalEditForm"
 import ToneList from "./tones/ToneList"
 import ToneDetails from "./tones/ToneDetails"
+import ToneForm from "./tones/ToneForm"
 
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
@@ -46,6 +47,15 @@ const ApplicationViews = props => {
                 render={props => {
                     if (hasUser) {
                         return <ToneList {...props} />;
+                    } else {
+                        return <Redirect to="/login" />;
+                    }
+                }}
+            />
+                     <Route exact path="/tones/new"
+                render={props => {
+                    if (hasUser) {
+                        return <ToneForm {...props} />;
                     } else {
                         return <Redirect to="/login" />;
                     }
