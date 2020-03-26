@@ -18,6 +18,11 @@ const ToneList = (props) => {
 
     return (
         <>
+                    <Button type="button" bg="dark" variant="dark"
+                className="btn"
+                onClick={() => { props.history.push("/tones/new") }}>
+                Add Tone
+                </Button>
             <div className="container-cards">
                 {tones.map(tone =>
                     <ToneCard

@@ -10,6 +10,9 @@ const TonePedalCard = props => {
         <Card.Title>
           {props.pedal.pedal.name}
         </Card.Title>
+        <p>
+        {props.pedal.settings && props.pedal.settings}
+        </p>
       </div>
     </Card>
     )

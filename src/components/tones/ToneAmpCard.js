@@ -8,9 +8,12 @@ const ToneAmpCard = props => {
       <div className="card-content">
           <Card.Img variant="top" src={require('./amp_01.svg')} />
         <Card.Title>
-          {props.amp.name}
+        {props.amp ? props.amp.name : ""}
         </Card.Title>
       </div>
+      <p>
+        {props.settings && props.settings}
+    </p>
     </Card>
     )
 }

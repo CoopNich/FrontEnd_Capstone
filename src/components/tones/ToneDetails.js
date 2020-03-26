@@ -5,42 +5,32 @@ import ToneAmpCard from "./ToneAmpCard"
 import TonePedalList from "./TonePedalList"
 
 const ToneDetails = props => {
-    const [guitar, setGuitar] = useState({ name: "" });
-    const [amp, setAmp] = useState({ name: "" });
+    const [tone, setTone] = useState({});
+   
 
     useEffect(() => {
-        ToneManager.getWithGuitar(props.toneId)
+        ToneManager.getWithGuitarAndAmp(props.toneId)
             .then(tone => {
-                setGuitar({
-                    name: tone.guitar.name
-                });
+                setTone(tone);
             });
     }, [props.toneId]);
-
-    useEffect(() => {
-        ToneManager.getWithAmp(props.toneId)
-            .then(tone => {
-                setAmp({
-                    name: tone.amp.name
-                });
-            });
-    }, [props.toneId]);
-
 
     return (
         <>
         <div className="guitar-card">
                 <ToneGuitarCard
-                    key={guitar.id}
-                    guitar={guitar}
+                    key={tone.guitarId}
+                    guitar={tone.guitar}
+                    settings={tone.guitarSettings}
                     {...props}
                 />
             
         </div>
         <div className="amp-card">
                 <ToneAmpCard
-                    key={amp.id}
-                    amp={amp}
+                    key={tone.ampId}
+                    amp={tone.amp}
+                    settings={tone.ampSettings}
                     {...props}
                 />
             

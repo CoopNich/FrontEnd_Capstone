@@ -8,8 +8,11 @@ const ToneGuitarCard = props => {
       <div className="card-content">
           <Card.Img variant="top" src={require('./guitar_01.svg')} />
         <Card.Title>
-          {props.guitar.name}
+          {props.guitar ? props.guitar.name : ""}
         </Card.Title>
+        <p>
+        {props.settings && props.settings}
+        </p>
       </div>
     </Card>
     )
