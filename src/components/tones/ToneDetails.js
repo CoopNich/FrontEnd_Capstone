@@ -30,6 +30,7 @@ const ToneDetails = props => {
                 <ToneAmpCard
                     key={tone.ampId}
                     amp={tone.amp}
+                    settings={tone.ampSettings}
                     {...props}
                 />
             

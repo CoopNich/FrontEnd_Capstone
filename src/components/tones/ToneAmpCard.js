@@ -11,6 +11,9 @@ const ToneAmpCard = props => {
         {props.amp ? props.amp.name : ""}
         </Card.Title>
       </div>
+      <p>
+        {props.settings && props.settings}
+    </p>
     </Card>
     )
 }
