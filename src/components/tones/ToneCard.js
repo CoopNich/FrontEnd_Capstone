@@ -11,6 +11,10 @@ const ToneCard = props => {
           {props.tone.name}
         </Card.Title>
       </div>
+      <Button className="btn" bg="dark" variant="dark" type="button"
+          onClick={() => props.history.push(`/tones/${props.tone.id}/edit`)}>
+          Edit
+        </Button>
       <Button className="btn" bg="dark" variant="dark" type="button" onClick={() => props.deleteTone(props.tone.id)}>Delete</Button>
     </Card>
     )

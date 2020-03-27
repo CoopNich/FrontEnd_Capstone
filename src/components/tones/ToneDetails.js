@@ -14,6 +14,7 @@ const ToneDetails = props => {
                 setTone(tone);
             });
     }, [props.toneId]);
+    
 
     return (
         <>

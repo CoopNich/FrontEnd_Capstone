@@ -5,10 +5,10 @@ import AmpManager from "../../modules/AmpManager"
 import { Button, Input, Form, FormGroup, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
 
 
-const ToneForm = props => {
+const ToneEditForm = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [guitars, setGuitars] = useState([]);
-    const [selectedGuitar, setSelectedGuitar] = useState({ name: "" });
+    const [selectedGuitar, setSelectedGuitar] = useState({ name: "", guitarId: "", guitarSettings: "", ampId: "", ampSettings: "" });
     const [selectedAmp, setSelectedAmp] = useState({ name: "" });
     const [amps, setAmps] = useState([]);
     const [tone, setTone] = useState({ name: "" })
@@ -60,20 +60,31 @@ const ToneForm = props => {
         getAmps();
     }, []);
 
-    const constructNewTone = evt => {
-        evt.preventDefault();
-        if (tone.name === "") {
-            window.alert("Please fill out all fields");
-        } else {
-            setIsLoading(true);
-            const newTone = {
-                ...tone,
-                userId: parseInt(sessionStorage.getItem("credentials"))
-            }
-            ToneManager.post(newTone)
-                .then(() => props.history.push("/tones"));
-        }
-    };
+    const updateExistingTone = evt => {
+        evt.preventDefault()
+        setIsLoading(true);
+
+        const editedTone = {
+            id: props.match.params.toneId,
+            name: tone.name,
+            userId: tone.userId,
+            ampId: tone.ampId,
+            ampSettings: tone.ampSettings,
+            guitarId: tone.guitarId,
+            guitarSettings: tone.guitarSettings
+        };
+
+        ToneManager.update(editedTone)
+            .then(() => props.history.push("/tones"))
+    }
+
+    useEffect(() => {
+        ToneManager.get(props.match.params.toneId)
+            .then(tone => {
+                setTone(tone);
+                setIsLoading(false);
+            });
+    }, []);
 
     return (
         <>
@@ -84,7 +95,7 @@ const ToneForm = props => {
                         required
                         onChange={handleFieldChange}
                         id="name"
-                        placeholder="Name your tone"
+                        value={tone.name}
                     />
                 </FormGroup>
 
@@ -111,7 +122,7 @@ const ToneForm = props => {
                         required
                         onChange={handleFieldChange}
                         id="guitarSettings"
-                        placeholder="Volume,Pickups,etc."
+                        value={tone.guitarSettings}
                     />
                 </FormGroup>
 
@@ -138,14 +149,14 @@ const ToneForm = props => {
                         required
                         onChange={handleFieldChange}
                         id="ampSettings"
-                        placeholder="Gain, Treble, Volume, etc."
+                        value={tone.ampSettings}
                     />
                 </FormGroup>
                 <Button
                     className="btn" bg="dark" variant="dark"
                     type="button"
                     disabled={isLoading}
-                    onClick={constructNewTone}
+                    onClick={updateExistingTone}
                 >Submit</Button>
 
 
@@ -158,5 +169,4 @@ const ToneForm = props => {
 
 }
 
-
-export default ToneForm
+export default ToneEditForm
