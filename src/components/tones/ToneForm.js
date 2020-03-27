@@ -8,8 +8,10 @@ import { Button, Input, Form, FormGroup, Label, Dropdown, DropdownToggle, Dropdo
 const ToneForm = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [guitars, setGuitars] = useState([]);
+    const [selectedGuitar, setSelectedGuitar] = useState({ name: "" });
+    const [selectedAmp, setSelectedAmp] = useState({ name: "" });
     const [amps, setAmps] = useState([]);
-    const [tone, setTone] = useState({ name: "", })
+    const [tone, setTone] = useState({ name: "" })
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpen2, setDropdownOpen2] = useState(false);
 
@@ -25,11 +27,17 @@ const ToneForm = props => {
         const stateToChange = { ...tone };
         stateToChange["guitarId"] = parseInt(evt.target.value);
         setTone(stateToChange);
+        const stateToChange2 = { ...selectedGuitar };
+        stateToChange2["name"] = evt.target.name;
+        setSelectedGuitar(stateToChange2)
     };
     const handleAmpChange = evt => {
         const stateToChange = { ...tone };
         stateToChange["ampId"] = parseInt(evt.target.value);
         setTone(stateToChange);
+        const stateToChange2 = { ...selectedAmp };
+        stateToChange2["name"] = evt.target.name;
+        setSelectedAmp(stateToChange2)
     };
 
     const getGuitars = () => {
@@ -82,11 +90,15 @@ const ToneForm = props => {
 
                 <Dropdown isOpen={dropdownOpen} toggle={toggle} >
                     <DropdownToggle caret>
-                        Choose a Guitar
+                    {selectedGuitar.name === ""
+                        ?
+                        "Choose a Guitar"
+
+                        : selectedGuitar.name}
                </DropdownToggle>
                     <DropdownMenu >
                         {guitars.map(guitar =>
-                            <DropdownItem key={guitar.id} value={guitar.id} onClick={handleGuitarChange} >
+                            <DropdownItem key={guitar.id} value={guitar.id} name={guitar.name} onClick={handleGuitarChange} >
                                 {guitar.name}
                             </DropdownItem>
                         )}
@@ -105,11 +117,15 @@ const ToneForm = props => {
 
                 <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
                     <DropdownToggle caret>
-                        Choose an Amp
+                    {selectedAmp.name === ""
+                        ?
+                        "Choose an Amp"
+
+                        : selectedAmp.name}
                </DropdownToggle>
                     <DropdownMenu >
                         {amps.map(amp =>
-                            <DropdownItem key={amp.id} value={amp.id} onClick={handleAmpChange} >
+                            <DropdownItem key={amp.id} name={amp.name} value={amp.id} onClick={handleAmpChange} >
                                 {amp.name}
                             </DropdownItem>
                         )}
@@ -126,11 +142,11 @@ const ToneForm = props => {
                     />
                 </FormGroup>
                 <Button
-                         className="btn" bg="dark" variant="dark"
-                            type="button"
-                            disabled={isLoading}
-                            onClick={constructNewTone}
-                        >Submit</Button>
+                    className="btn" bg="dark" variant="dark"
+                    type="button"
+                    disabled={isLoading}
+                    onClick={constructNewTone}
+                >Submit</Button>
 
 
 
