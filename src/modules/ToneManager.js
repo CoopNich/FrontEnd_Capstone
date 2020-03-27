@@ -29,6 +29,15 @@ export default {
         return fetch(`${remoteURL}/tones/${id}`, {
           method: "DELETE"
         }).then(result => result.json())
+      },
+      update(editedTone) {
+        return fetch(`${remoteURL}/tones/${editedTone.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(editedTone)
+        }).then(data => data.json());
       }
 
 }
