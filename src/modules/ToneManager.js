@@ -29,6 +29,6 @@ export default {
         return fetch(`${remoteURL}/tones/${id}`, {
           method: "DELETE"
         }).then(result => result.json())
-      },
+      }
 
 }

@@ -11,6 +11,10 @@ const ToneList = (props) => {
             setTones(tonesArray)
         });
     };
+    const deleteTone = id => {
+        ToneManager.delete(id)
+            .then(() => ToneManager.getAll().then(setTones));
+    };
 
     useEffect(() => {
         getTones();
@@ -28,6 +32,7 @@ const ToneList = (props) => {
                     <ToneCard
                         key={tone.id}
                         tone={tone}
+                        deleteTone={deleteTone}
                         {...props}
                     />
                 )}
