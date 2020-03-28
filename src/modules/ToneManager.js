@@ -7,6 +7,9 @@ export default {
     getAll() {
         return fetch(`${remoteURL}/tones?userId=${parseInt(sessionStorage.getItem("credentials"))}`).then(result => result.json())
     },
+    getByName(name) {
+      return fetch(`${remoteURL}/tones?userId=${parseInt(sessionStorage.getItem("credentials"))}&name=${name}`).then(result => result.json())
+  },
     getWithGuitarAndAmp(id) {
         return fetch(`${remoteURL}/tones/${id}?_expand=amp&_expand=guitar`).then(result => result.json())
     },
