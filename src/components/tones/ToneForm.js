@@ -3,6 +3,7 @@ import ToneManager from "../../modules/ToneManager"
 import GuitarManager from "../../modules/GuitarManager"
 import AmpManager from "../../modules/AmpManager"
 import PedalManager from "../../modules/PedalManager"
+import TonePedalList from "./TonePedalList"
 import { Button, Input, Form, FormGroup, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
 
 
@@ -15,6 +16,7 @@ const ToneForm = props => {
     const [pedals, setPedals] = useState([]);
     const [selectedPedal, setSelectedPedal] = useState({ name: "" });
     const [tone, setTone] = useState({ id: "", name: "" })
+    const [newTonePedals, setNewTonePedals] = useState([]);
     const [pedalTone, setPedalTone] = useState({})
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpen2, setDropdownOpen2] = useState(false);
@@ -82,14 +84,14 @@ const ToneForm = props => {
         getAmps();
     }, []);
 
-    const getPedals = () => {
+    const getAllPedals = () => {
         return PedalManager.getAll().then(pedalsArray => {
             setPedals(pedalsArray)
         });
     };
 
     useEffect(() => {
-        getPedals();
+        getAllPedals();
     }, []);
 
     const constructNewTone = evt => {
@@ -248,13 +250,18 @@ const ToneForm = props => {
                         type="button"
                         onClick={constructNewPedalTone}
                     >Add Pedal</Button>
+                    <Button
+                        className="btn" bg="dark" variant="dark"
+                        type="button"
+                        onClick={() => (props.history.push("/tones"))}
+                    >Finish</Button>
 
                 </>
             }
 
 
 
-       </Form>
+        </Form>
         </>
     );
 
