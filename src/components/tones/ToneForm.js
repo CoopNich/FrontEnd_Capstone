@@ -15,7 +15,7 @@ const ToneForm = props => {
     const [pedals, setPedals] = useState([]);
     const [selectedPedal, setSelectedPedal] = useState({ name: "" });
     const [tone, setTone] = useState({ id: "", name: "" })
-    const [pedalTone, setPedalTone] = useState({ })
+    const [pedalTone, setPedalTone] = useState({})
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpen2, setDropdownOpen2] = useState(false);
     const [dropdownOpen3, setDropdownOpen3] = useState(false);
@@ -218,45 +218,42 @@ const ToneForm = props => {
 
 
                 : <><Dropdown isOpen={dropdownOpen3} toggle={toggle3} >
-                <DropdownToggle caret>
-                    {selectedPedal.name === ""
-                        ?
-                        "Choose a Pedal"
+                    <DropdownToggle caret>
+                        {selectedPedal.name === ""
+                            ?
+                            "Choose a Pedal"
 
-                        : selectedPedal.name}
-                </DropdownToggle>
-                <DropdownMenu >
-                    {pedals.map(pedal =>
-                        <DropdownItem key={pedal.id} name={pedal.name} value={pedal.id} onClick={handlePedalChange} >
-                            {pedal.name}
-                        </DropdownItem>
-                    )}
-                </DropdownMenu>
-            </Dropdown>
+                            : selectedPedal.name}
+                    </DropdownToggle>
+                    <DropdownMenu >
+                        {pedals.map(pedal =>
+                            <DropdownItem key={pedal.id} name={pedal.name} value={pedal.id} onClick={handlePedalChange} >
+                                {pedal.name}
+                            </DropdownItem>
+                        )}
+                    </DropdownMenu>
+                </Dropdown>
 
-            <FormGroup>
-                <Label for="settings">Settings</Label>
-                <Input type="text"
-                    required
-                    onChange={handlePedalFieldChange}
-                    id="settings"
-                    placeholder="Level, Decay, etc."
-                />
-            </FormGroup>
-            <Button
+                    <FormGroup>
+                        <Label for="settings">Settings</Label>
+                        <Input type="text"
+                            required
+                            onChange={handlePedalFieldChange}
+                            id="settings"
+                            placeholder="Level, Decay, etc."
+                        />
+                    </FormGroup>
+                    <Button
                         className="btn" bg="dark" variant="dark"
                         type="button"
                         onClick={constructNewPedalTone}
                     >Add To Tone</Button>
-            </>
+                </>
             }
 
 
 
         </Form>
-
-
-
         </>
     );
 
