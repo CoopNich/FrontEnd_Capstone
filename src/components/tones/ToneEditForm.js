@@ -8,10 +8,10 @@ import { Button, Input, Form, FormGroup, Label, Dropdown, DropdownToggle, Dropdo
 const ToneEditForm = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [guitars, setGuitars] = useState([]);
-    const [selectedGuitar, setSelectedGuitar] = useState({ name: "", guitarId: "", guitarSettings: "", ampId: "", ampSettings: "" });
+    const [selectedGuitar, setSelectedGuitar] = useState({ name: ""});
     const [selectedAmp, setSelectedAmp] = useState({ name: "" });
     const [amps, setAmps] = useState([]);
-    const [tone, setTone] = useState({ name: "" })
+    const [tone, setTone] = useState({ })
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpen2, setDropdownOpen2] = useState(false);
 
@@ -62,7 +62,7 @@ const ToneEditForm = props => {
 
     const updateExistingTone = evt => {
         evt.preventDefault()
-        setIsLoading(true);
+    
 
         const editedTone = {
             id: props.match.params.toneId,
@@ -79,11 +79,15 @@ const ToneEditForm = props => {
     }
 
     useEffect(() => {
-        ToneManager.get(props.match.params.toneId)
+        async function getTone() {
+            setIsLoading(true)
+        ToneManager.getWithGuitarAndAmp(props.match.params.toneId)
             .then(tone => {
                 setTone(tone);
-                setIsLoading(false);
+                setIsLoading(false)
             });
+        }
+        getTone()
     }, []);
 
     return (
@@ -101,12 +105,9 @@ const ToneEditForm = props => {
 
                 <Dropdown isOpen={dropdownOpen} toggle={toggle} >
                     <DropdownToggle caret>
-                    {selectedGuitar.name === ""
-                        ?
-                        "Choose a Guitar"
-
-                        : selectedGuitar.name}
+                  Choose a Guitar
                </DropdownToggle>
+
                     <DropdownMenu >
                         {guitars.map(guitar =>
                             <DropdownItem key={guitar.id} value={guitar.id} name={guitar.name} onClick={handleGuitarChange} >
