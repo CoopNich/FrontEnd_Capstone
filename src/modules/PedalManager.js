@@ -17,6 +17,15 @@ export default {
             body: JSON.stringify(newpedal)
         }).then(data => data.json())
     },
+    postPedalTone(newPedalTone) {
+      return fetch(`${remoteURL}/pedalTones`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newPedalTone)
+      }).then(data => data.json())
+  },
     delete(id) {
         return fetch(`${remoteURL}/pedals/${id}`, {
           method: "DELETE"

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TonePedalCard from "./TonePedalCard";
 import ToneManager from "../../modules/ToneManager";
-import { Button, Card, CardDeck } from "react-bootstrap"
 
 const TonePedalList = (props) => {
     const [pedals, setPedals] = useState([]);
