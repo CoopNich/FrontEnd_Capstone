@@ -4,7 +4,7 @@ import { Card, Button } from "react-bootstrap"
 const TonePedalCard = props => {
 
     return (
-        <Card style={{ width: '15rem' }}>
+        <Card style={{ width: '5rem' }}>
       <div className="card-content">
           <Card.Img variant="top" src={require('./pedal_01.svg')} />
         <Card.Title>
