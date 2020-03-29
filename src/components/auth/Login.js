@@ -32,7 +32,13 @@ const Login = props => {
             placeholder="Email address"
             required="" autoFocus="" />
         </div>
+        <div>
         <Button className="btn" bg="dark" variant="dark" type="submit">Sign in</Button>
+        <Button className="btn" type="button" bg="dark" variant="dark"
+          onClick={() => props.history.push(`/register`)}>
+          Register
+        </Button>
+        </div>
     </Form>
   );
 };

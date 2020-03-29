@@ -15,6 +15,7 @@ import ToneList from "./tones/ToneList"
 import ToneDetails from "./tones/ToneDetails"
 import ToneForm from "./tones/ToneForm"
 import ToneEditForm from "./tones/ToneEditForm"
+import Register from "./register/Register"
 
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
@@ -44,6 +45,13 @@ const ApplicationViews = props => {
                     return <Home hasUser={hasUser} {...props} />;
                 }}
             />
+            <Route
+                exact
+                path="/register"
+                render={props => {
+                    return <Register {...props} />;
+                }}
+            />
             <Route exact path="/tones"
                 render={props => {
                     if (hasUser) {
@@ -53,7 +61,7 @@ const ApplicationViews = props => {
                     }
                 }}
             />
-                     <Route exact path="/tones/new"
+            <Route exact path="/tones/new"
                 render={props => {
                     if (hasUser) {
                         return <ToneForm {...props} />;
@@ -70,7 +78,7 @@ const ApplicationViews = props => {
                         return <Redirect to="/login" />
                     }
                 }} />
-                   <Route path="/tones/:toneId(\d+)/edit"
+            <Route path="/tones/:toneId(\d+)/edit"
                 render={props => {
                     if (hasUser) {
                         return <ToneEditForm {...props} />

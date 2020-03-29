@@ -124,7 +124,7 @@ const ToneForm = props => {
 
     const constructNewPedalTone = evt => {
         evt.preventDefault();
-        if (pedalTone.name === "") {
+        if (pedalTone.pedalId === "" || pedalTone.settings === "") {
             window.alert("Please fill out all fields");
         } else {
             setIsLoading(true);
@@ -247,13 +247,14 @@ const ToneForm = props => {
                         className="btn" bg="dark" variant="dark"
                         type="button"
                         onClick={constructNewPedalTone}
-                    >Add To Tone</Button>
+                    >Add Pedal</Button>
+
                 </>
             }
 
 
 
-        </Form>
+       </Form>
         </>
     );
 
