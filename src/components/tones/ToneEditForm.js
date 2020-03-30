@@ -8,10 +8,10 @@ import { Button, Input, Form, FormGroup, Label, Dropdown, DropdownToggle, Dropdo
 const ToneEditForm = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [guitars, setGuitars] = useState([]);
-    const [selectedGuitar, setSelectedGuitar] = useState({ name: ""});
+    const [selectedGuitar, setSelectedGuitar] = useState({ name: "" });
     const [selectedAmp, setSelectedAmp] = useState({ name: "" });
     const [amps, setAmps] = useState([]);
-    const [tone, setTone] = useState({ })
+    const [tone, setTone] = useState({})
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpen2, setDropdownOpen2] = useState(false);
 
@@ -46,23 +46,31 @@ const ToneEditForm = props => {
         });
     };
 
-    useEffect(() => {
-        getGuitars();
-    }, []);
-
     const getAmps = () => {
         return AmpManager.getAll().then(ampsArray => {
             setAmps(ampsArray)
         });
     };
 
+
+    const getTone = () => {
+        setIsLoading(true)
+        ToneManager.getWithGuitarAndAmp(props.match.params.toneId)
+            .then(tone => {
+                setTone(tone);
+                // setSelectedGuitar(tone.guitar.name)
+                setIsLoading(false)
+            });
+    }
+
     useEffect(() => {
+        getGuitars();
+        getTone()
         getAmps();
     }, []);
 
     const updateExistingTone = evt => {
         evt.preventDefault()
-    
 
         const editedTone = {
             id: props.match.params.toneId,
@@ -78,18 +86,6 @@ const ToneEditForm = props => {
             .then(() => props.history.push("/tones"))
     }
 
-    useEffect(() => {
-        async function getTone() {
-            setIsLoading(true)
-        ToneManager.getWithGuitarAndAmp(props.match.params.toneId)
-            .then(tone => {
-                setTone(tone);
-                setIsLoading(false)
-            });
-        }
-        getTone()
-    }, []);
-
     return (
         <>
             <Form>
@@ -102,20 +98,14 @@ const ToneEditForm = props => {
                         value={tone.name}
                     />
                 </FormGroup>
-
-                <Dropdown isOpen={dropdownOpen} toggle={toggle} >
-                    <DropdownToggle caret>
-                  Choose a Guitar
-               </DropdownToggle>
-
-                    <DropdownMenu >
-                        {guitars.map(guitar =>
-                            <DropdownItem key={guitar.id} value={guitar.id} name={guitar.name} onClick={handleGuitarChange} >
+               
+                <select value={tone.guitarId} onChange={handleGuitarChange}>
+                {guitars.map(guitar =>
+                            <option key={guitar.id} value={guitar.id} name={guitar.name}  >
                                 {guitar.name}
-                            </DropdownItem>
+                            </option>
                         )}
-                    </DropdownMenu>
-                </Dropdown>
+                </select>
 
                 <FormGroup>
                     <Label for="guitarSettings">Settings</Label>
@@ -127,22 +117,13 @@ const ToneEditForm = props => {
                     />
                 </FormGroup>
 
-                <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
-                    <DropdownToggle caret>
-                    {selectedAmp.name === ""
-                        ?
-                        "Choose an Amp"
-
-                        : selectedAmp.name}
-               </DropdownToggle>
-                    <DropdownMenu >
-                        {amps.map(amp =>
-                            <DropdownItem key={amp.id} name={amp.name} value={amp.id} onClick={handleAmpChange} >
+                <select value={tone.ampId} onChange={handleAmpChange}>
+                {amps.map(amp =>
+                            <option key={amp.id} value={amp.id} name={amp.name} >
                                 {amp.name}
-                            </DropdownItem>
+                            </option>
                         )}
-                    </DropdownMenu>
-                </Dropdown>
+                </select>
 
                 <FormGroup>
                     <Label for="ampSettings">Settings</Label>

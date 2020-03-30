@@ -3,7 +3,6 @@ import ToneManager from "../../modules/ToneManager"
 import GuitarManager from "../../modules/GuitarManager"
 import AmpManager from "../../modules/AmpManager"
 import PedalManager from "../../modules/PedalManager"
-import TonePedalList from "./TonePedalList"
 import { Button, Input, Form, FormGroup, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
 
 
@@ -16,7 +15,6 @@ const ToneForm = props => {
     const [pedals, setPedals] = useState([]);
     const [selectedPedal, setSelectedPedal] = useState({ name: "" });
     const [tone, setTone] = useState({ id: "", name: "" })
-    const [newTonePedals, setNewTonePedals] = useState([]);
     const [pedalTone, setPedalTone] = useState({})
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpen2, setDropdownOpen2] = useState(false);
