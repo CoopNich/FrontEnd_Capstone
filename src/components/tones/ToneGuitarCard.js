@@ -11,7 +11,7 @@ const ToneGuitarCard = props => {
           {props.guitar ? props.guitar.name : ""}
         </Card.Title>
         <p>
-        {props.settings && props.settings}
+        {props.settings}
         </p>
       </div>
     </Card>
