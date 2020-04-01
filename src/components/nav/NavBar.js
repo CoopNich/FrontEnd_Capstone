@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import { Navbar, Nav, Jumbotron } from "reactstrap"
-import "./NavBar.css"
+import { slide as Menu } from 'react-burger-menu'
 
 const NavBar = props => {
 
@@ -11,57 +10,49 @@ const NavBar = props => {
     }
 
     return (
-        <header>
-            <Jumbotron className="site-title">
-                <h1>toneTrunk</h1>
-            </Jumbotron>
-            <Navbar bg="dark" variant="dark" >
-                <Nav className="container">
-
-                    {/* <NavLink className="nav-link" to="/Home">Home</NavLink> */}
+        <Menu>
+                      {/* <a className="menu-item" href="/Home">Home</a> */}
 
                     {props.hasUser
                         ?
-                        <NavLink className="nav-link" to="/tones" >
+                        <a className="menu-item" href="/tones" >
                             My Tones
-                            </NavLink>
+                            </a>
 
                         : null}
                    
                     {props.hasUser
                         ?
-                        <NavLink className="nav-link" to="/amps" >
+                        <a className="menu-item" href="/amps" >
                             Amplifiers
-                            </NavLink>
+                            </a>
 
                         : null}
 
                     {props.hasUser
                         ?
-                        <NavLink className="nav-link" to="/guitars" >
+                        <a className="menu-item" href="/guitars" >
                             Guitars
-                            </NavLink>
+                            </a>
 
                         : null}
                     {props.hasUser
                         ?
-                        <NavLink className="nav-link" to="/pedals" >
+                        <a className="menu-item" href="/pedals" >
                             Pedals
-                            </NavLink>
+                            </a>
 
                         : null}
 
                     {props.hasUser
                         ?
-                        <NavLink className="nav-link" to="/login" onClick={handleLogout} >
+                        <a className="menu-item" href="/login" onClick={handleLogout} >
                             Logout
-                             </NavLink>
+                             </a>
 
                         :
                         null}
-                </Nav>
-            </Navbar>
-        </header>
+        </Menu>
     );
 };
 

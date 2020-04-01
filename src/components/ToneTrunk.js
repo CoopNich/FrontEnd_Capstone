@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
+import "./ToneTrunk.css"
 
 const ToneTrunk = () => {
   const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -19,8 +20,14 @@ const ToneTrunk = () => {
 
   return (
     <>
-      <NavBar hasUser={hasUser} clearUser={clearUser} />
-      <ApplicationViews hasUser={hasUser} setUser={setUser} />
+      <div id="App">
+      {hasUser
+        ? <NavBar hasUser={hasUser} clearUser={clearUser}/>
+        : null }
+        <div id="page-wrap">
+          <ApplicationViews hasUser={hasUser} setUser={setUser} />
+        </div>
+      </div>
     </>
   );
 };

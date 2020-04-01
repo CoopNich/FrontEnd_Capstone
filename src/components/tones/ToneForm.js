@@ -135,7 +135,6 @@ const ToneForm = props => {
             PedalManager.postPedalTone(newPedalTone);
         }
     };
-
     return (
         <><Form>
             <FormGroup>

@@ -19,6 +19,7 @@ const ToneList = (props) => {
     useEffect(() => {
         getTones();
     }, []);
+    
 
     return (
         <>
