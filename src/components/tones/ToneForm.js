@@ -103,7 +103,8 @@ const ToneForm = props => {
                 userId: parseInt(sessionStorage.getItem("credentials"))
             }
             ToneManager.post(newTone)
-                .then(() => props.history.push("/tones"));
+                .then(() => props.history.push("/tones"))
+                .then(() => props.display())
         }
     };
 
