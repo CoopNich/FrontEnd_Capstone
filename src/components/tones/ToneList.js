@@ -20,11 +20,17 @@ const ToneList = (props) => {
         getTones();
     }, []);
 
+    const addTone = () => {
+        props.removeDisplay()
+        props.history.push("/tones/new")
+    };
+    
+
     return (
         <>
                     <Button type="button" bg="dark" variant="dark"
                 className="btn"
-                onClick={() => { props.history.push("/tones/new") }}>
+                onClick={addTone}>
                 Add Tone
                 </Button>
             <div className="container-cards">

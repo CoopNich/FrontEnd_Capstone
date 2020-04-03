@@ -103,7 +103,8 @@ const ToneForm = props => {
                 userId: parseInt(sessionStorage.getItem("credentials"))
             }
             ToneManager.post(newTone)
-                .then(() => props.history.push("/tones"));
+                .then(() => props.history.push("/tones"))
+                .then(() => props.display())
         }
     };
 
@@ -132,10 +133,22 @@ const ToneForm = props => {
                 ...pedalTone,
                 toneId: tone.id
             }
-            PedalManager.postPedalTone(newPedalTone);
+            PedalManager.postPedalTone(newPedalTone)
         }
-    };
-
+ };
+ const cancelTone = evt => {
+    const confirm = window.confirm("Are you sure you want to cancel? You will lose all changes")
+    if (confirm === true) {
+        evt.preventDefault();
+        ToneManager.delete(tone.id)
+            .then(() => props.history.push("/tones"))
+            .then(() => props.display())
+    }
+}
+const finish = () => {
+    props.history.push("/tones")
+    props.display()
+}
     return (
         <><Form>
             <FormGroup>
@@ -206,9 +219,14 @@ const ToneForm = props => {
                 ? <><Button
                     className="btn" bg="dark" variant="dark"
                     type="button"
-                    disabled={isLoading}
-                    onClick={constructNewToneAndAddPedals}
-                >Add Pedals</Button>
+                    onClick={cancelTone}
+                >Cancel</Button>
+                    <Button
+                        className="btn" bg="dark" variant="dark"
+                        type="button"
+                        disabled={isLoading}
+                        onClick={constructNewToneAndAddPedals}
+                    >Add Pedals</Button>
                     <Button
                         className="btn" bg="dark" variant="dark"
                         type="button"
@@ -251,8 +269,13 @@ const ToneForm = props => {
                     <Button
                         className="btn" bg="dark" variant="dark"
                         type="button"
-                        onClick={() => (props.history.push("/tones"))}
+                        onClick={finish}
                     >Finish</Button>
+                    <Button
+                        className="btn" bg="dark" variant="dark"
+                        type="button"
+                        onClick={cancelTone}
+                    >Cancel</Button>
 
                 </>
             }

@@ -20,6 +20,9 @@ import Register from "./register/Register"
 const ApplicationViews = props => {
     const hasUser = props.hasUser;
     const setUser = props.setUser;
+    const toDisplay = props.toDisplay
+    const display = props.display
+    const removeDisplay = props.removeDisplay
 
     return (
         <>
@@ -55,7 +58,7 @@ const ApplicationViews = props => {
             <Route exact path="/tones"
                 render={props => {
                     if (hasUser) {
-                        return <ToneList {...props} />;
+                        return <ToneList {...props} removeDisplay={removeDisplay} toDisplay={toDisplay} display={display}/>;
                     } else {
                         return <Redirect to="/login" />;
                     }
@@ -64,7 +67,7 @@ const ApplicationViews = props => {
             <Route exact path="/tones/new"
                 render={props => {
                     if (hasUser) {
-                        return <ToneForm {...props} />;
+                        return <ToneForm {...props} display={display}/>;
                     } else {
                         return <Redirect to="/login" />;
                     }
