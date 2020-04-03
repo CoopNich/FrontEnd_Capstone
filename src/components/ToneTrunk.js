@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Jumbotron } from "reactstrap";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
 import "./ToneTrunk.css"
@@ -36,6 +37,7 @@ const ToneTrunk = () => {
         ? <NavBar hasUser={hasUser} clearUser={clearUser} removeDisplay={removeDisplay} toDisplay={toDisplay}/>
         : null }
         <div id="page-wrap">
+          <Jumbotron className="app_header"><h2>toneTrunk</h2></Jumbotron>
           <ApplicationViews hasUser={hasUser} setUser={setUser} removeDisplay={removeDisplay} toDisplay={toDisplay} display={display} />
         </div>
       </div>
