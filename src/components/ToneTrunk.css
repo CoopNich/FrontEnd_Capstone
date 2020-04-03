@@ -4,8 +4,15 @@ body {
 }
 
 .app_header {
-  margin: 0px 0px 0px 0px !important;
+  margin: 0px 0px 20px 0px !important;
   padding: 12px 6px !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 #App {

@@ -1,10 +1,11 @@
 import React from "react"; 
+import "./GuitarCard.css"
 import { Card, Button } from "react-bootstrap"
 
 const GuitarCard = props => {
 
     return (
-        <Card style={{ width: '15rem' }}>
+        <Card className="card">
       <div className="card-content">
           <Card.Img variant="top" src={require('./guitar_01.svg')} />
         <Card.Title>

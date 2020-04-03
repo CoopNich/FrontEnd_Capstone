@@ -18,16 +18,16 @@ const ToneDetails = props => {
 
     return (
         <>
-        <div className="guitar-card">
+        <div className="container-cards">
                 <ToneGuitarCard
                     key={tone.guitarId}
                     guitar={tone.guitar}
                     settings={tone.guitarSettings}
                     {...props}
                 />
+                </div>
+                <div className="container-cards">
             
-        </div>
-        <div className="amp-card">
                 <ToneAmpCard
                     key={tone.ampId}
                     amp={tone.amp}
@@ -36,7 +36,7 @@ const ToneDetails = props => {
                 />
             
         </div>
-        <div className="pedal-list">
+        <div>
             <TonePedalList 
             {...props}
             />
