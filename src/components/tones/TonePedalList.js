@@ -18,7 +18,7 @@ const TonePedalList = (props) => {
 
     return (
         <>
-            <div className="pedal-cards">
+            <div className="container-cards">
                 {pedals.map(pedal =>
                     <TonePedalCard
                         key={pedal.id}
